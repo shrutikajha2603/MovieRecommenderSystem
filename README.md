@@ -3,6 +3,9 @@
 
 This repository contains a **Movie Recommender System** built using Python and Streamlit. It recommends movies to users based on collaborative filtering, making it easy for users to discover movies that match their tastes.
 
+![image](https://github.com/user-attachments/assets/478b304a-4ccf-4820-a2f5-dbe369cda688)
+
+
 ## Features
 
 - **Movie Recommendation**: Get personalized movie recommendations based on selected movies.
