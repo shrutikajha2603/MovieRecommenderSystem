@@ -2,8 +2,8 @@ import pickle
 import streamlit as st
 import requests
 
-# import gdown
-# import os
+import gdown
+import os
 
 # Define the URL for the file
 file_id = "1UbJQeeGPFvHsdVcdm3__qcoPZVTUTYOT"  # Replace with your Google Drive file ID
