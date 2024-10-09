@@ -6,6 +6,7 @@ import gdown
 import os
 
 # Define the URL for the file
+#https://drive.google.com/file/d//view?usp=drive_link
 file_id = "1UbJQeeGPFvHsdVcdm3__qcoPZVTUTYOT"  # Replace with your Google Drive file ID
 url = f"https://drive.google.com/uc?export=download&id={file_id}"
 output = "similarity.pkl"
