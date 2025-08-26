@@ -12,7 +12,7 @@ def download_file_if_not_exists(file_name, file_id):
         gdown.download(url, file_name, quiet=False)
 
 # Get the file IDs from the URLs you provided
-similarity_id = "1uyzV1gtGkFlAIWNLvIijht0HBX4SjDbK"
+similarity_id = "1BeeqZIAa67kn96Ec80ILOYto9mqvn0Xv"
 movies_dict_id = "1tSSzMd3McmJDb5ERmRhN2F61TeWKa3_q"
 movies_id = "16BH5DEFQyI-V1z8Eu3Nc60lx8qO0YEdu"
 
