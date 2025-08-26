@@ -1,24 +1,30 @@
 import pickle
 import streamlit as st
 import requests
-
 import gdown
 import os
 
-# Define the URL for the file
-#https://drive.google.com/file/d//view?usp=drive_link
-file_id = "1UbJQeeGPFvHsdVcdm3__qcoPZVTUTYOT"  # Replace with your Google Drive file ID
-url = f"https://drive.google.com/uc?export=download&id={file_id}"
-output = "similarity.pkl"
+def download_file_if_not_exists(file_name, file_id):
+    """Downloads a file from Google Drive if it does not exist locally."""
+    if not os.path.exists(file_name):
+        print(f"Downloading {file_name} from Google Drive...")
+        url = f"https://drive.google.com/uc?export=download&id={file_id}"
+        gdown.download(url, file_name, quiet=False)
 
-# Check if the file exists locally
-if not os.path.exists(output):
-    print("Downloading similarity.pkl from Google Drive...")
-    gdown.download(url, output, quiet=False)
+# Get the file IDs from the URLs you provided
+similarity_id = "1uyzV1gtGkFlAIWNLvIijht0HBX4SjDbK"
+movies_dict_id = "1tSSzMd3McmJDb5ERmRhN2F61TeWKa3_q"
+movies_id = "16BH5DEFQyI-V1z8Eu3Nc60lx8qO0YEdu"
 
-# Load the file for use
-# Example: similarity = pickle.load(open(output, 'rb'))
+# Download all necessary files if they don't exist
+download_file_if_not_exists('movies.pkl', movies_id)
+download_file_if_not_exists('movies_dict.pkl', movies_dict_id)
+download_file_if_not_exists('similarity.pkl', similarity_id)
 
+# Load the data for use
+movies = pickle.load(open('movies.pkl','rb'))
+similarity = pickle.load(open('similarity.pkl','rb'))
+# movies_dict.pkl is not used in the code you provided, so it is not loaded here.
 
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=23174b7105e74171a70d5f92450333a8&language=en-US".format(movie_id)
@@ -41,11 +47,7 @@ def recommend(movie):
 
     return recommended_movie_names,recommended_movie_posters
 
-
 st.header('Movie Recommender System')
-movies = pickle.load(open('movies.pkl','rb'))
-similarity = pickle.load(open('similarity.pkl','rb'))
-
 movie_list = movies['title'].values
 selected_movie = st.selectbox(
     "Type or select a movie from the dropdown",
@@ -61,7 +63,6 @@ if st.button('Show Recommendation'):
     with col2:
         st.text(recommended_movie_names[1])
         st.image(recommended_movie_posters[1])
-
     with col3:
         st.text(recommended_movie_names[2])
         st.image(recommended_movie_posters[2])
@@ -71,7 +72,3 @@ if st.button('Show Recommendation'):
     with col5:
         st.text(recommended_movie_names[4])
         st.image(recommended_movie_posters[4])
-
-
-
-
